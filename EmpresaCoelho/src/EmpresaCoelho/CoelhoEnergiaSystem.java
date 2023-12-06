@@ -281,12 +281,6 @@ class CoelhoEnergia {
     }
 
     
-    public void visualizarFalhas() {
-		
-		
-	}
-
-
 	public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
@@ -318,12 +312,18 @@ class CoelhoEnergia {
     public void adicionarFatura(Fatura fatura) {
         faturas.add(fatura);
     }
-
    
     public void adicionarPagamento(Pagamento pagamento) {
         pagamentos.add(pagamento);
     }
 
+            public void visualizarFalhas() {
+            System.out.println("Falhas registradas:");
+            for (Falha falha : falhas) {
+                System.out.println("Descrição: " + falha.getDescricao());
+                // Adicione mais informações se necessário
+            }
+        }
     public void visualizarPagamentosPorImovel(String matriculaImovel) {
         Imovel imovelAssociado = buscarImovelPorMatricula(matriculaImovel);
 
