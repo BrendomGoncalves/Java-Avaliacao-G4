@@ -321,7 +321,7 @@ class CoelhoEnergia {
             System.out.println("Falhas registradas:");
             for (Falha falha : falhas) {
                 System.out.println("Descrição: " + falha.getDescricao());
-                // Adicione mais informações se necessário
+               
             }
         }
     public void visualizarPagamentosPorImovel(String matriculaImovel) {
