@@ -1,8 +1,7 @@
-import java.util.Date;
 import java.util.Scanner;
 
-public class CoelhoEnergiaSystem {
-    public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         CoelhoEnergia coelhoEnergia = new CoelhoEnergia();
 
