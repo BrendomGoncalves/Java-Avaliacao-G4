@@ -74,7 +74,8 @@ public class Main {
                         case 4:
                             System.out.println("Exclusão de Clientes:");
                             System.out.println("informe o CPF do cliente:");
-                            if (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != null) {
+                            String cpfExclusão = scanner.nextLine();
+                            (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != ) {
                                 System.out.println("Cliente excluído com sucesso!");
 
                             } else {
