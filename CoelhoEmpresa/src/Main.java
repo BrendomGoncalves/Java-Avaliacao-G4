@@ -1,8 +1,8 @@
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws ParseException {
         CoelhoEnergia coelhoEnergia = new CoelhoEnergia();
 
         while (true) {
@@ -14,8 +14,8 @@ public class Main {
             System.out.println("5. Gestão de Falhas");
             System.out.println("0. Sair");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice = ler().nextInt();
+            ler().nextLine();
 
             switch (choice) {
                 case 1:
@@ -26,20 +26,19 @@ public class Main {
                     System.out.println("4. Remover Cliente por CPF");
                     System.out.println("5. Alterar Cliente");
                     System.out.println("6. Voltar ao Menu Principal");
-
-                    int clienteChoice = scanner.nextInt();
-                    scanner.nextLine();
+                    System.out.print("> ");
+                    int clienteChoice = ler().nextInt();
 
                     switch (clienteChoice) {
                         case 1:
-                            System.out.println("Informe o CPF do cliente:");
-                            String cpf = scanner.nextLine();
+                            System.out.print("Informe o CPF do cliente: ");
+                            String cpf = ler().nextLine();
 
                             if (coelhoEnergia.buscarClientePorCPF(cpf) != null) {
                                 System.out.println("Cliente com esse CPF já existe.");
                             } else {
-                                System.out.println("Informe o nome do cliente:");
-                                String nome = scanner.nextLine();
+                                System.out.print("Informe o nome do cliente: ");
+                                String nome = ler().nextLine();
 
                                 Cliente novoCliente = new Cliente();
                                 novoCliente.setCpf(cpf);
@@ -50,8 +49,8 @@ public class Main {
                             }
                             break;
                         case 2:
-                            System.out.println("Informe o CPF do cliente:");
-                            String cpfBusca = scanner.nextLine();
+                            System.out.print("Informe o CPF do cliente: ");
+                            String cpfBusca = ler().nextLine();
 
                             Cliente clienteEncontrado = coelhoEnergia.buscarClientePorCPF(cpfBusca);
 
@@ -65,33 +64,51 @@ public class Main {
                             break;
                         case 3:
                             System.out.println("Listar Clientes:");
+                            if (coelhoEnergia.getClientes().isEmpty()) {
+                                System.out.println("Nenhum cliente cadastrado!");
+                                break;
+                            }
                             for (Cliente cliente : coelhoEnergia.getClientes()) {
                                 System.out.println("CPF: " + cliente.getCpf());
                                 System.out.println("Nome: " + cliente.getNome());
                             }
                         case 4:
                             System.out.println("Remover Cliente:");
-                            System.out.println("Informe o CPF do cliente:");
-
-                            if (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != null) {
-                                System.out.println("Cliente excluído com sucesso!");
-                            } else {
-                                System.out.println("Cliente não encontrado.");
+                            if (coelhoEnergia.getClientes().isEmpty()) {
+                                System.out.println("Nenhum cliente cadastrado!");
+                                break;
                             }
+                            System.out.println("Informe o CPF do cliente: ");
+                            String cpfRemover = ler().nextLine();
+
+                            for (Cliente c : coelhoEnergia.getClientes()) {
+                                if (cpfRemover.equals(c.getCpf())) {
+                                    coelhoEnergia.removerCliente(cpfRemover);
+                                    System.out.println("Cliente removido com sucesso!");
+                                    break;
+                                }
+                            }
+                            System.out.println("Cliente não encontrado!");
                             break;
                         case 5:
-                            System.out.println("Alterar de Clientes:");
-                            System.out.println("informe o CPF do cliente:");
+                            System.out.println("Alterar Cliente:");
+                            System.out.println("Informe o CPF do cliente:");
+                            String cpfEditar = ler().nextLine();
 
-                            if (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != null) {
-                                System.out.println("Cliente alterado com sucesso!");
-                            } else {
-                                System.out.println("Cliente não encontrado.");
+                            for (Cliente c : coelhoEnergia.getClientes()) {
+                                if (cpfEditar.equals(c.getCpf())) {
+                                    System.out.println("Nome atual: " + c.getNome());
+                                    System.out.println("Novo nome:");
+                                    String novoNome = ler().nextLine();
+                                    c.setNome(novoNome);
+                                    System.out.println("Nome alterado com sucesso!");
+                                    break;
+                                }
                             }
+                            System.out.println("Cliente não encontrado!");
                             break;
                         case 6:
                             break;
-
                         default:
                             System.out.println("Opção inválida. Tente novamente.");
                             break;
@@ -99,23 +116,26 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Menu de Gestão de Imóveis:");
-                    System.out.println("1. Adicionar Imóvel");
+                    System.out.println("1. Adicionar Imovel");
                     System.out.println("2. Buscar Imóvel por Matrícula");
-                    System.out.println("3. Voltar ao Menu Principal");
+                    System.out.println("3. Listar Todos os Imoveis");
+                    System.out.println("4. Remover Imovel por Matrícula");
+                    System.out.println("5. Alterar Imovel");
+                    System.out.println("6. Realizar Leitura do Imovel");
+                    System.out.println("7. Voltar ao Menu Principal");
 
-                    int imovelChoice = scanner.nextInt();
-                    scanner.nextLine();
+                    int imovelChoice = ler().nextInt();
 
                     switch (imovelChoice) {
                         case 1:
                             System.out.println("Informe a matrícula do imóvel:");
-                            String matricula = scanner.nextLine();
+                            String matricula = ler().nextLine();
 
                             if (coelhoEnergia.buscarImovelPorMatricula(matricula) != null) {
                                 System.out.println("Imóvel com essa matrícula já existe.");
                             } else {
                                 System.out.println("Informe o endereço do imóvel:");
-                                String endereco = scanner.nextLine();
+                                String endereco = ler().nextLine();
 
                                 Imovel novoImovel = new Imovel();
                                 novoImovel.setMatricula(matricula);
@@ -128,7 +148,7 @@ public class Main {
 
                         case 2:
                             System.out.println("Informe a matrícula do imóvel:");
-                            String matriculaBusca = scanner.nextLine();
+                            String matriculaBusca = ler().nextLine();
 
                             Imovel imovelEncontrado = coelhoEnergia.buscarImovelPorMatricula(matriculaBusca);
 
@@ -142,8 +162,73 @@ public class Main {
                             break;
 
                         case 3:
+                            System.out.println("Listar Imóveis:");
+                            if (coelhoEnergia.getImoveis().isEmpty()) {
+                                System.out.println("Nenhum imóvel cadastrado!");
+                                break;
+                            }
+                            for (Imovel imovel : coelhoEnergia.getImoveis()) {
+                                System.out.println("Matrícula: " + imovel.getMatricula());
+                                System.out.println("Endereço: " + imovel.getEndereco());
+                            }
                             break;
+                        case 4:
+                            System.out.println("Remover Imóvel:");
+                            if (coelhoEnergia.getImoveis().isEmpty()) {
+                                System.out.println("Nenhum imóvel cadastrado!");
+                                break;
+                            }
+                            System.out.println("Informe a matrícula do imóvel:");
+                            String matriculaRemover = ler().nextLine();
 
+                            for (Imovel imovel : coelhoEnergia.getImoveis()) {
+                                if (matriculaRemover.equals(imovel.getMatricula())) {
+                                    coelhoEnergia.removerImovel(matriculaRemover);
+                                    System.out.println("Imóvel removido com sucesso!");
+                                    break;
+                                }
+                            }
+                            System.out.println("Imóvel não encontrado!");
+                            break;
+                        case 5:
+                            System.out.println("Alterar Imovel:");
+                            if (coelhoEnergia.getImoveis().isEmpty()) {
+                                System.out.println("Nenhum imóvel cadastrado!");
+                                break;
+                            }
+                            System.out.println("Informe a matrícula do imóvel:");
+                            String matriculaAlterar = ler().nextLine();
+                            Imovel imovelAlterar = coelhoEnergia.buscarImovelPorMatricula(matriculaAlterar);
+                            if (imovelAlterar != null) {
+                                System.out.println("Novo endereço:");
+                                String novoEndereco = ler().nextLine();
+                                imovelAlterar.setEndereco(novoEndereco);
+                                System.out.println("Imóvel alterado com sucesso!");
+                            } else {
+                                System.out.println("Imóvel não encontrado!");
+                            }
+                            break;
+                        case 6:
+                            System.out.println("Realizar Leitura do Imovel:");
+                            if (coelhoEnergia.getImoveis().isEmpty()) {
+                                System.out.println("Nenhum imóvel cadastrado!");
+                                break;
+                            }
+                            System.out.println("Informe a matrícula do imóvel:");
+                            String matriculaLeitura = ler().nextLine();
+                            Imovel imovelLeitura = coelhoEnergia.buscarImovelPorMatricula(matriculaLeitura);
+                            if (imovelLeitura != null) {
+                                imovelLeitura.realizarLeitura();
+                                Fatura novaF = new Fatura();
+                                novaF.criarFatura(imovelLeitura);
+                                coelhoEnergia.adicionarFatura(novaF);
+                                System.out.println("Leitura concluída com sucesso!");
+                            } else {
+                                System.out.println("Imóvel não encontrado!");
+                            }
+                            break;
+                        case 7:
+                            break;
                         default:
                             System.out.println("Opção inválida. Tente novamente.");
                             break;
@@ -156,41 +241,35 @@ public class Main {
                     System.out.println("3. Visualizar Faturas");
                     System.out.println("4. Voltar ao Menu Principal");
 
-                    int faturaChoice = scanner.nextInt();
-                    scanner.nextLine();
+                    int faturaChoice = ler().nextInt();
+                    ler().nextLine();
 
                     switch (faturaChoice) {
                         case 1:
                             System.out.println("Informe a matrícula do imóvel associado à fatura:");
-                            String matriculaImovel = scanner.nextLine();
+                            String matriculaImovel = ler().nextLine();
                             Imovel imovelAssociado = coelhoEnergia.buscarImovelPorMatricula(matriculaImovel);
-
                             if (imovelAssociado != null) {
-                                // Crie a lógica para obter as informações necessárias e adicionar a fatura
-
-
+                                System.out.println("Imóvel encontrado:");
+                                System.out.println("Matrícula: " + imovelAssociado.getMatricula());
+                                System.out.println("Endereço: " + imovelAssociado.getEndereco());
                                 Fatura novaFatura = new Fatura();
-                                // Preencha os detalhes da fatura
-                                // ...
-
+                                novaFatura.criarFatura(imovelAssociado);
                                 coelhoEnergia.adicionarFatura(novaFatura);
                                 System.out.println("Fatura adicionada com sucesso!");
                             } else {
                                 System.out.println("Imóvel não encontrado.");
                             }
                             break;
-
                         case 2:
                             System.out.println("Informe a matrícula do imóvel associado à fatura:");
-                            String matriculaPagamento = scanner.nextLine();
+                            String matriculaPagamento = ler().nextLine();
                             Imovel imovelPagamento = coelhoEnergia.buscarImovelPorMatricula(matriculaPagamento);
 
                             if (imovelPagamento != null) {
                                 System.out.println("Informe o valor do pagamento:");
-                                double valorPagamento = scanner.nextDouble();
-
+                                double valorPagamento = ler().nextDouble();
                                 Pagamento novoPagamento = new Pagamento();
-
                                 coelhoEnergia.adicionarPagamento(novoPagamento);
                                 System.out.println("Pagamento realizado com sucesso!");
                             } else {
@@ -200,7 +279,7 @@ public class Main {
 
                         case 3:
                             System.out.println("Informe a matrícula do imóvel para visualizar as faturas:");
-                            String matriculaVisualizar = scanner.nextLine();
+                            String matriculaVisualizar = ler().nextLine();
                             Imovel imovelVisualizar = coelhoEnergia.buscarImovelPorMatricula(matriculaVisualizar);
 
                             if (imovelVisualizar != null) {
@@ -223,13 +302,13 @@ public class Main {
                     System.out.println("1. Visualizar Pagamentos por Imóvel");
                     System.out.println("2. Voltar ao Menu Principal");
 
-                    int pagamentoChoice = scanner.nextInt();
-                    scanner.nextLine();
+                    int pagamentoChoice = ler().nextInt();
+                    ler().nextLine();
 
                     switch (pagamentoChoice) {
                         case 1:
                             System.out.println("Informe a matrícula do imóvel para visualizar os pagamentos:");
-                            String matriculaPagamentoVisualizar = scanner.nextLine();
+                            String matriculaPagamentoVisualizar = ler().nextLine();
                             coelhoEnergia.visualizarPagamentosPorImovel(matriculaPagamentoVisualizar);
                             break;
 
@@ -247,14 +326,14 @@ public class Main {
                     System.out.println("2. Visualizar Falhas");
                     System.out.println("3. Voltar ao Menu Principal");
 
-                    int falhaChoice = scanner.nextInt();
-                    scanner.nextLine();
+                    int falhaChoice = ler().nextInt();
+                    ler().nextLine();
 
                     switch (falhaChoice) {
                         case 1:
 
                             System.out.println("Informe a descrição da falha:");
-                            String descricaoFalha = scanner.nextLine();
+                            String descricaoFalha = ler().nextLine();
 
                             Falha novaFalha = new Falha();
                             novaFalha.setDescricao(descricaoFalha);
@@ -286,5 +365,7 @@ public class Main {
             }
         }
     }
+    public static Scanner ler(){
+        return new Scanner(System.in);
+    }
 }
-

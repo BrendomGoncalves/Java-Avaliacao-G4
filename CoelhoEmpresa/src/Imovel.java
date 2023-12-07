@@ -35,4 +35,9 @@ class Imovel {
     public void setPenultimaLeitura(double penultimaLeitura) {
         this.penultimaLeitura = penultimaLeitura;
     }
+    public void realizarLeitura() {
+        this.penultimaLeitura = this.ultimaLeitura;
+        System.out.println("Digite a leitura atual: ");
+        this.ultimaLeitura = Main.ler().nextDouble();
+    }
 }

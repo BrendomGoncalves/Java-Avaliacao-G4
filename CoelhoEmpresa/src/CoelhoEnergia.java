@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 class CoelhoEnergia {
     private ArrayList<Cliente> clientes;
@@ -13,13 +14,13 @@ class CoelhoEnergia {
         faturas = new ArrayList<>();
         pagamentos = new ArrayList<>();
         falhas = new ArrayList<>();
-
     }
-
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
-
+    public List<Imovel> getImoveis(){
+        return imoveis;
+    }
     public void visualizarFalhas() {
         for (Falha falha : falhas) {
             System.out.println(falha);
@@ -68,5 +69,13 @@ class CoelhoEnergia {
     }
     public void adicionarFalha(Falha falha) {
         falhas.add(falha);
+    }
+    public void removerImovel(String matricula) {
+        for (Imovel imovel : imoveis) {
+            if (imovel.getMatricula().equals(matricula)) {
+                imoveis.remove(imovel);
+                return;
+            }
+        }
     }
 }

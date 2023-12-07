@@ -42,4 +42,11 @@ class Fatura {
     public void setQuitada(boolean quitada) {
         this.quitada = quitada;
     }
+    public void criarFatura(Imovel imovel){
+        this.data = new Date();
+        this.valor = this.ultimaLeitura * 10;
+        this.penultimaLeitura = imovel.getPenultimaLeitura();
+        this.ultimaLeitura = imovel.getUltimaLeitura();
+        this.quitada = false;
+    }
 }
