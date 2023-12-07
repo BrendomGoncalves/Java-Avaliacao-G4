@@ -6,7 +6,7 @@ public class Main {
         CoelhoEnergia coelhoEnergia = new CoelhoEnergia();
 
         while (true) {
-            System.out.println("Menu Principal:");
+            System.out.println("Menu Principal Coelho Energia:");
             System.out.println("1. Gestão de Clientes");
             System.out.println("2. Gestão de Imóveis");
             System.out.println("3. Gestão de Faturas");
