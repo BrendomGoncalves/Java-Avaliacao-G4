@@ -15,7 +15,6 @@ public class Main {
             System.out.println("0. Sair");
             System.out.print("> ");
             int choice = ler().nextInt();
-            ler().nextLine();
 
             switch (choice) {
                 case 1:
@@ -351,9 +350,9 @@ public class Main {
                                 case 2:
                                     System.out.println("Visualizar Reparos:");
                                     break;
-                                case 3:m.out.println("Resolver Reparo:");
-                                    for(i
-                                    Systent i = 0; i < coelhoEnergia.getReparos().size() - 1; i++){
+                                case 3:
+                                    System.out.println("Resolver Reparo:");
+                                    for(int i = 0; i < coelhoEnergia.getReparos().size() - 1; i++){
                                         System.out.print("id: " + i + " - ");
                                         coelhoEnergia.getReparos().get(i).getDescricaoAtividade();
                                     }

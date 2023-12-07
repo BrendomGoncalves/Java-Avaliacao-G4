@@ -55,7 +55,7 @@ class Imovel {
     public void adicionarPagamento(Pagamento pagamento) {
         pagamentos.add(pagamento);
     }
-    public void toString(){
+    public void mostraImovel(){
         System.out.println("Matricula: " + this.matricula);
         System.out.println("Endereco: " + this.endereco);
         System.out.println("Ultima leitura: " + this.ultimaLeitura);
@@ -93,5 +93,6 @@ class Imovel {
                 }
             }
         }
+        return false;
     }
 }
