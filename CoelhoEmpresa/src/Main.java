@@ -22,7 +22,10 @@ public class Main {
                     System.out.println("Menu de Gestão de Clientes:");
                     System.out.println("1. Adicionar Cliente");
                     System.out.println("2. Buscar Cliente por CPF");
-                    System.out.println("3. Voltar ao Menu Principal");
+                    System.out.println("3. Listar Todos os Clientes");
+                    System.out.println("4. Excluir Cliente por CPF");
+                    System.out.println("5. Alterar Cliente");
+                    System.out.println("6. Voltar ao Menu Principal");
 
                     int clienteChoice = scanner.nextInt();
                     scanner.nextLine();
@@ -63,6 +66,35 @@ public class Main {
                             break;
 
                         case 3:
+                            System.out.println("listar  Clientes:");
+                            for (Cliente cliente : coelhoEnergia.getClientes()) {
+                                System.out.println("CPF: " + cliente.getCpf());
+                                System.out.println("Nome: " + cliente.getNome());
+                            }
+                        case 4:
+                            System.out.println("Exclusão de Clientes:");
+                            System.out.println("informe o CPF do cliente:");
+                            if (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != null) {
+                                System.out.println("Cliente excluído com sucesso!");
+
+                            } else {
+                                System.out.println("Cliente não encontrado.");
+                            }
+                            break;
+
+                        case 5:
+                            System.out.println("Alterar de Clientes:");
+                            System.out.println("informe o CPF do cliente:");
+
+                            if (coelhoEnergia.buscarClientePorCPF(scanner.nextLine()) != null) {
+                                System.out.println("Cliente alterado com sucesso!");
+
+                            } else {
+                                System.out.println("Cliente não encontrado.");
+                            }
+                            break;
+
+                        case 6:
                             break;
 
                         default:
