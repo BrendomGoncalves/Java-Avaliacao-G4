@@ -1,34 +1,28 @@
 import java.util.ArrayList;
-import java.util.List;
 
 class CoelhoEnergia {
     private ArrayList<Cliente> clientes;
     private ArrayList<Imovel> imoveis;
-    private ArrayList<Fatura> faturas;
-    private ArrayList<Pagamento> pagamentos;
     private ArrayList<Falha> falhas;
+    private ArrayList<Reparo> reparos;
 
     public CoelhoEnergia() {
         clientes = new ArrayList<>();
         imoveis = new ArrayList<>();
-        faturas = new ArrayList<>();
-        pagamentos = new ArrayList<>();
         falhas = new ArrayList<>();
+        reparos = new ArrayList<>();
     }
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
-    public List<Imovel> getImoveis(){
+    public ArrayList<Imovel> getImoveis(){
         return imoveis;
     }
-    public List<Fatura> getFaturas(){
-        return faturas;
-    }
-    public List<Pagamento> getPagamentos(){
-        return pagamentos;
-    }
-    public List<Falha> getFalhas(){
+    public ArrayList<Falha> getFalhas(){
         return falhas;
+    }
+    public ArrayList<Reparo> getReparos(){
+        return reparos;
     }
     public void visualizarFalhas() {
         for (Falha falha : falhas) {
@@ -57,32 +51,25 @@ class CoelhoEnergia {
         }
         return null;
     }
-    public void adicionarFatura(Fatura fatura) {
-        faturas.add(fatura);
-    }
-    public void adicionarPagamento(Pagamento pagamento) {
-        pagamentos.add(pagamento);
-    }
-    public void visualizarPagamentosPorImovel(String matriculaImovel) {
-        Imovel imovelAssociado = buscarImovelPorMatricula(matriculaImovel);
-
-        if (imovelAssociado != null) {
-            System.out.println("Pagamentos associados ao imóvel (Matrícula: " + imovelAssociado.getMatricula() + "):");
-            for (Pagamento pagamento : pagamentos) {
-
-                System.out.println("Data: " + pagamento.getData() + ", Valor: " + pagamento.getValor());
-            }
-        } else {
-            System.out.println("Imóvel não encontrado.");
-        }
-    }
     public void adicionarFalha(Falha falha) {
         falhas.add(falha);
+    }
+    public void adiconarReparo(Reparo reparo) {
+        reparos.add(reparo);
     }
     public void removerImovel(String matricula) {
         for (Imovel imovel : imoveis) {
             if (imovel.getMatricula().equals(matricula)) {
                 imoveis.remove(imovel);
+                return;
+            }
+        }
+    }
+
+    public void removerCliente(String cpfRemover) {
+        for (Cliente c : clientes) {
+            if (cpfRemover.equals(c.getCpf())) {
+                clientes.remove(c);
                 return;
             }
         }
