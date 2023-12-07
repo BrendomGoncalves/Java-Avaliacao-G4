@@ -1,8 +1,7 @@
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         CoelhoEnergia coelhoEnergia = new CoelhoEnergia();
 
         while (true) {
@@ -13,7 +12,7 @@ public class Main {
             System.out.println("4. Gestão de Pagamentos");
             System.out.println("5. Gestão de Falhas");
             System.out.println("0. Sair");
-
+            System.out.print("> ");
             int choice = ler().nextInt();
             ler().nextLine();
 
@@ -278,20 +277,17 @@ public class Main {
                             break;
 
                         case 3:
-                            System.out.println("Informe a matrícula do imóvel para visualizar as faturas:");
-                            String matriculaVisualizar = ler().nextLine();
-                            Imovel imovelVisualizar = coelhoEnergia.buscarImovelPorMatricula(matriculaVisualizar);
-
-                            if (imovelVisualizar != null) {
+                            System.out.println("Lista de Faturas: ");
+                            if (coelhoEnergia.getFaturas().isEmpty()) {
+                                System.out.println("Nenhuma fatura encontrada!");
                                 break;
-                            } else {
-                                System.out.println("Imóvel não encontrado.");
+                            }
+                            for (Fatura f : coelhoEnergia.getFaturas()) {
+                                System.out.println(f.toString());
                             }
                             break;
-
                         case 4:
                             break;
-
                         default:
                             System.out.println("Opção inválida. Tente novamente.");
                             break;
@@ -365,7 +361,8 @@ public class Main {
             }
         }
     }
-    public static Scanner ler(){
+
+    public static Scanner ler() {
         return new Scanner(System.in);
     }
 }

@@ -21,6 +21,15 @@ class CoelhoEnergia {
     public List<Imovel> getImoveis(){
         return imoveis;
     }
+    public List<Fatura> getFaturas(){
+        return faturas;
+    }
+    public List<Pagamento> getPagamentos(){
+        return pagamentos;
+    }
+    public List<Falha> getFalhas(){
+        return falhas;
+    }
     public void visualizarFalhas() {
         for (Falha falha : falhas) {
             System.out.println(falha);

@@ -49,4 +49,7 @@ class Fatura {
         this.ultimaLeitura = imovel.getUltimaLeitura();
         this.quitada = false;
     }
+    public String toString(){
+        return this.data + " - " + this.ultimaLeitura + " - " + this.penultimaLeitura + " - " + this.quitada;
+    }
 }
