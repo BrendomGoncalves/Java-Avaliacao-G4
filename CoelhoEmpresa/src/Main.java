@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         CoelhoEnergia coelhoEnergia = new CoelhoEnergia();
 
@@ -142,7 +142,6 @@ public class Main {
                                 // Crie a lógica para obter as informações necessárias e adicionar a fatura
 
 
-
                                 Fatura novaFatura = new Fatura();
                                 // Preencha os detalhes da fatura
                                 // ...
@@ -178,7 +177,7 @@ public class Main {
                             Imovel imovelVisualizar = coelhoEnergia.buscarImovelPorMatricula(matriculaVisualizar);
 
                             if (imovelVisualizar != null) {
-
+                                break;
                             } else {
                                 System.out.println("Imóvel não encontrado.");
                             }
