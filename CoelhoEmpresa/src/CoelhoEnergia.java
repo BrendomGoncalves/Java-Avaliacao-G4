@@ -13,7 +13,13 @@ class CoelhoEnergia {
         faturas = new ArrayList<>();
         pagamentos = new ArrayList<>();
         falhas = new ArrayList<>();
+
     }
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
     public void visualizarFalhas() {
         for (Falha falha : falhas) {
             System.out.println(falha);
